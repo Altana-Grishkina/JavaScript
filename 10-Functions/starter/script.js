@@ -36,7 +36,7 @@ createBooking('LH123', undefined, 1000); */
 
 // 136. How Passing Arguments Works: Value vs. Reference
 
-const flight = 'LH234';
+/* const flight = 'LH234';
 const jonas = {
 	name: 'Jonas Schmedtmann',
 	passport: 234789798
@@ -61,9 +61,35 @@ const newPassport = function(person){
 }
 
 newPassport(jonas); 
+ */
 
 
 
 
 
 
+// 137. First-Class and Higher-Order Functions
+
+/*
+JavaScript is a language that has FIRST-CLASS FUNCTIONS                 HIGHER-ORDER FUNCTIONS                 
+
+ - JS treats functions as first-class citizens                          - A function that receives another function as an 
+ - This means that functions are simply values                          argument, that returns a new function, or both
+ - Functions are just another "type" of object                          - This is only possible of first-class functions
+
+
+ -> Store functions in variables or properties:                        -> Function that receives another function
+    const add = (a, b) => a + b;                                       const greet = () => console.log('Hey Jonas'); 
+    const counter = {                                                  btnClose.addEventListener('click', greet); 
+        value: 23,                                                     
+        inc: function() {this.value++;                                  -> Function that returns new function
+    }                                                                   function count() {
+                                                                            let counter = 0;
+ -> Pass functions as arguments to OTHER functions:                         return function() {
+    const greet = () => console.log('Hey Jonas');                               counter++;
+    btnClose.addEventListener('click', greet);                              };
+                                                                        }
+ -> Return functions FROM functions
+ -> Call methods on functions:
+    counter.inc.bind(someOtherObject);
+*/
