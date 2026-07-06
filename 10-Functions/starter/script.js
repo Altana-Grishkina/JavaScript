@@ -102,7 +102,7 @@ JavaScript is a language that has FIRST-CLASS FUNCTIONS                 HIGHER-O
 // 138. Functions Accepting Callback Functions
 
 // two generic functions
-const oneWord = function(str){
+/* const oneWord = function(str){
     return str.replace(/ /g, '').toLowerCase();
 }
 
@@ -128,4 +128,29 @@ const high5 = function(){
 }
 document.body.addEventListener('click', high5);
 
-['Jonas', 'Martha', 'Adam'].forEach(high5);
+['Jonas', 'Martha', 'Adam'].forEach(high5); */
+
+
+
+
+
+
+
+
+// 139. Functions Returning Functions
+
+const greet = function(greeting){
+    return function(name){
+        console.log(`${greeting} ${name}`);
+    };
+};
+
+const greeterHey = greet('Hey');
+greeterHey('Jonas');
+greeterHey('Steven');
+
+greet('Hello')('Jonas');
+
+// Arrow function
+const greetArr = greeting => name => console.log(`${greeting} ${name}`);
+greetArr('Hi')('Jonas');
