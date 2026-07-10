@@ -264,3 +264,45 @@ const addTax1 = function(rate){
 const addVAT1 = addTax1(0.23);
 console.log(addVAT1(100));
 console.log(addVAT1(23)); */
+
+
+
+
+
+// Coding Challenge #1
+
+const poll = {
+  question: 'What is your favourite programming language?',
+  options: ['0: JavaScript', '1: Python', '2: Rust', '3: C++'],
+  // This generates [0, 0, 0, 0]. More in the next section 😃
+  answers: new Array(4).fill(0),
+  registerNewAnswer(){
+    const answer = Number(prompt(`${this.question}\n${this.options.join('\n')}\n(Write option number)`));
+  
+    //Based on the input number, update the answers array.
+    typeof answer === 'number' && answer < this.answers.length && this.answers[answer]++;
+   
+    this.displayResults();
+    this.displayResults('string');
+  
+},
+     //  Create a method 'displayResults' which displays the poll results. 
+    displayResults(type='array'){
+    if(type === 'array'){
+    console.log(this.answers);
+    } else if(type === 'string'){
+    console.log(`Poll results are ${this.answers.join(', ')}`);
+  } 
+},
+
+};
+
+
+document.querySelector('.poll').addEventListener('click', poll.registerNewAnswer.bind(poll));
+
+
+//  Run the 'displayResults' method at the end of each 'registerNewAnswer' method call.s
+poll.displayResults.call({answers: [1, 2, 3, 4]}, 'string');
+
+poll.displayResults.call({answers: [1, 5, 3, 9, 6]}, 'string');
+poll.displayResults.call({answers: [1, 5, 3, 9, 6]});
