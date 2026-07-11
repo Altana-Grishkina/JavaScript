@@ -270,7 +270,7 @@ console.log(addVAT1(23)); */
 
 
 // Coding Challenge #1
-
+/* 
 const poll = {
   question: 'What is your favourite programming language?',
   options: ['0: JavaScript', '1: Python', '2: Rust', '3: C++'],
@@ -305,4 +305,36 @@ document.querySelector('.poll').addEventListener('click', poll.registerNewAnswer
 poll.displayResults.call({answers: [1, 2, 3, 4]}, 'string');
 
 poll.displayResults.call({answers: [1, 5, 3, 9, 6]}, 'string');
-poll.displayResults.call({answers: [1, 5, 3, 9, 6]});
+poll.displayResults.call({answers: [1, 5, 3, 9, 6]}); */
+
+
+
+
+
+
+
+
+
+// 143. Immediately Invoked Function Expressions (IIFE)
+
+const runOnce = function(){
+    console.log('This will never run again');
+}
+
+runOnce();
+
+// Immediately Invoked Function Expression (IIFE)
+(function(){
+    console.log('This will never run again');
+    const isPrivate = 23;
+})();
+
+// IIFE with arrow function
+(() => console.log('This will ALSO never run again'))();
+
+{
+    const isPrivate = 23;
+    var notPrivate = 46;
+}
+console.log(isPrivate); // ReferenceError: isPrivate is not defined
+console.log(notPrivate); // 46
