@@ -5,7 +5,7 @@
 // BANKIST APP
 
 // Data
-const account1 = {
+/* const account1 = {
   owner: 'Jonas Schmedtmann',
   movements: [200, 450, -400, 3000, -650, -130, 70, 1300],
   interestRate: 1.2, // %
@@ -75,7 +75,7 @@ const displayMovements = function(movements){
   });
   
 };
-displayMovements(account1.movements);
+displayMovements(account1.movements); */
 
 // console.log(containerMovements.innerHTML);
 
@@ -134,8 +134,8 @@ console.log(letters.join(' - ')); */
 
 
 // 150. The new at method
-
-/* const arr = [23, 11, 64];
+/* 
+const arr = [23, 11, 64];
 console.log(arr[0]);
 console.log(arr.at(0));
 
@@ -145,8 +145,8 @@ console.log(arr.slice(-1)[0]);
 console.log(arr.at(-2));
 
 console.log('jonas'.at(0));
-console.log('jonas'.at(-1)); */
-
+console.log('jonas'.at(-1));
+ */
 
 
 
@@ -194,7 +194,7 @@ movements.forEach(function(mov, i, arr){
 // 152. forEach with maps
 
 //Map
-const currencies = new Map([
+/* const currencies = new Map([
   ['USD', 'United States dollar'],
   ['EUR', 'Euro'],
   ['GBP', 'Pound sterling'],
@@ -211,4 +211,42 @@ console.log(currenciesUnique);
 currenciesUnique.forEach(function(value, _, map){
   console.log(`${value}: ${value}`);
   
-})
+}) */
+
+
+
+
+
+
+
+  // 155. Challenge #1
+
+/* let dogsJulia = [3, 5, 2, 12, 3];
+let dogsKate = [4, 1, 15, 7]; */
+
+
+ 
+
+
+
+
+
+function checkDogs(dogsJulia, dogsKate){
+let copyDogsJulia = [...dogsJulia];
+const justDogsJulia = copyDogsJulia.slice(1, -2); 
+ const together = [...justDogsJulia, ...dogsKate]
+
+together.forEach(function(i, value){
+      if(value > 3){
+        console.log(`Dog number ${i} is an adult, and is ${value} years old `);
+      } else {
+        console.log(`Dog number ${i} is still a puppy`);
+      }
+ }); 
+ 
+}
+
+checkDogs([9, 16, 6, 8, 3], [10, 5, 6, 1, 4]);
+// TEST DATA 1: Julia's data [3, 5, 2, 12, 3], Kate's data [4, 1, 15, 7]
+
+// TEST DATA 2: Julia's data [9, 16, 6, 8, 3], Kate's data [10, 5, 6, 1, 4]
