@@ -347,6 +347,8 @@ console.log(notPrivate); // 46
 
 
 
+
+
 // 144. Closures
 
 /* const secureBooking = function(){
@@ -373,7 +375,7 @@ console.dir(booker); // shows the closure in the console
 // 145. More closure Examples
 
 // Example 1
-let f;
+/* let f;
 const g = function(){
     const a = 23;
     f = function(){
@@ -411,4 +413,23 @@ const boardPassengers = function(n, wait){
 }
 
 const perGroup = 1000;
-boardPassengers(180, 3);
+boardPassengers(180, 3); */
+
+
+
+
+
+
+// 146. Challenge #2
+
+(function(){
+    const header = document.querySelector('h1');
+    header.style.color = 'red';
+
+   /*  const blue = () => header.style.color = 'blue';
+    document.body.addEventListener('click', blue); */
+    document.querySelector('body').addEventListener('click', function(){
+        header.style.color = 'blue';
+    })
+})();
+
