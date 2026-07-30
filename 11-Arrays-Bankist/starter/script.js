@@ -259,27 +259,27 @@ let dogsKate = [4, 1, 15, 7]; */
 
 // 157. The map Method
 
-const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+// const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
-const eurToUsd = 1.1;
-// const movementsUsd = movements.map(function(mov){
-//   return mov * eurToUsd;
-// })
+// const eurToUsd = 1.1;
+// // const movementsUsd = movements.map(function(mov){
+// //   return mov * eurToUsd;
+// // })
 
-const movementsUsd = movements.map((mov) => mov * eurToUsd);
-console.log(movements);
-console.log(movementsUsd);
+// const movementsUsd = movements.map((mov) => mov * eurToUsd);
+// console.log(movements);
+// console.log(movementsUsd);
 
-const movenentsUSDfor = [];
-for (const mov of movements) movenentsUSDfor.push(mov * eurToUsd);
-console.log(movenentsUSDfor);
+// const movenentsUSDfor = [];
+// for (const mov of movements) movenentsUSDfor.push(mov * eurToUsd);
+// console.log(movenentsUSDfor);
 
-const movementsDescriptions = movements.map(
-  (mov, i) => 
-  `Movement ${i + 1}: You ${mov > 0 ? 'deposited' : 'withdrew'} ${Math.abs(mov)}`
-);
+// const movementsDescriptions = movements.map(
+//   (mov, i) => 
+//   `Movement ${i + 1}: You ${mov > 0 ? 'deposited' : 'withdrew'} ${Math.abs(mov)}`
+// );
 
-console.log(movementsDescriptions);
+// console.log(movementsDescriptions);
 
 
 
@@ -383,3 +383,24 @@ console.log(accounts);
 
 
 
+
+
+
+
+// 159. The filter Method
+
+const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+
+const deposits = movements.filter(function(mov){
+  return mov > 0
+});
+console.log(movements);
+console.log(deposits);
+
+
+const deposistsFor = [];
+for(const mov of movements) if(mov>0) deposistsFor.push(mov);
+console.log(deposistsFor);
+
+const withdrawals = movements.filter((mov) => mov < 0);
+console.log(withdrawals);
