@@ -37,7 +37,7 @@ const accounts = [account1, account2, account3, account4];
 const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
 // Elements
-// const labelWelcome = document.querySelector('.welcome');
+const labelWelcome = document.querySelector('.welcome');
 const labelDate = document.querySelector('.date');
 const labelBalance = document.querySelector('.balance__value');
 const labelSumIn = document.querySelector('.summary__value--in');
@@ -76,7 +76,7 @@ const displayMovements = function(movements){
   });
   
 };
-displayMovements(account1.movements);
+//displayMovements(account1.movements);
 
 
 
@@ -387,27 +387,27 @@ const max = movements.reduce((acc, mov)=>{
 }, movements[0]);
 console.log(max);
 
-calcDisplayBalance(account1.movements);
+// calcDisplayBalance(account1.movements);
 
-const calcDisplaySummary = function(movements){
-  const incomes = movements
+const calcDisplaySummary = function(acc){
+  const incomes = acc.movements
                     .filter(mov => mov > 0)
                     .reduce((acc, mov) => acc + mov, 0);
   labelSumIn.textContent = `${incomes} EUR`;
 
-  const out = movements
+  const out = acc.movements
                     .filter(mov => mov < 0)
                     .reduce((acc, mov) => acc + mov, 0);
   labelSumOut.textContent = `${Math.abs(out)} EUR`;
 
-  const interest = movements.filter(mov => mov > 0)
-                            .map(deposit => (deposit * 1.2) / 100)
+  const interest = acc.movements.filter(mov => mov > 0)
+                            .map(deposit => (deposit * acc.interestRate) / 100)
                             .filter((int,i, arr) => {console.log(arr); return int >= 1})
                             .reduce((acc, int) => acc + int, 0);
   labelSumInterest.textContent = `${interest} EUR`;
 }
 
-calcDisplaySummary(account1.movements);
+// calcDisplaySummary(account1.movements);
 
 const createUsernames = function(accs){
   accs.forEach(function(acc){
@@ -424,7 +424,37 @@ createUsernames(accounts);
 
 
 
+// 156. Implementing a login
 
+// Event handler
+let currentAccount;
+
+btnLogin.addEventListener('click', function(e){
+  // prevent form submitting
+  e.preventDefault();
+
+  currentAccount = accounts.find(acc => acc.username  === inputLoginUsername.value);
+  console.log(currentAccount);
+
+  if(currentAccount?.pin === Number(inputLoginPin.value)) {
+    // Display UI and message
+    labelWelcome.textContent = `Welcome back, ${currentAccount.owner.split(' ')[0]}`;
+    containerApp.style.opacity = 100;
+
+    // Clear input fields
+    inputLoginUsername.value = inputLoginPin.value = '';
+    inputLoginPin.blur();
+
+    // Display movements
+    displayMovements(currentAccount.movements);
+
+    // Display balance
+    calcDisplayBalance(currentAccount.movements);
+
+    // Display summary
+    calcDisplaySummary(currentAccount);
+  }
+})
 
 
 
@@ -943,13 +973,13 @@ console.log(totalDepositsUSD);
 
 // 164. The find method
 
-const firstWithdrawal = movements.find(mov => mov < 0);
-console.log(movements);
-console.log(firstWithdrawal);
-console.log(accounts);
+// const firstWithdrawal = movements.find(mov => mov < 0);
+// console.log(movements);
+// console.log(firstWithdrawal);
+// console.log(accounts);
 
-const account = accounts.find(acc => acc.owner === 'Jessica Davis');
-console.log(account);
+// const account = accounts.find(acc => acc.owner === 'Jessica Davis');
+// console.log(account);
 
 
 
