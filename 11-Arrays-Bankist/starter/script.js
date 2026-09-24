@@ -372,9 +372,10 @@ const displayMovements = function(movements){
 // };
 // displayMovements(account1.movements); 
 
-const calcDisplayBalance = function(movements){
-  const balance = movements.reduce((acc, mov) => acc + mov, 0);
-  labelBalance.textContent = `${balance} EUR`;
+const calcDisplayBalance = function(acc){
+  const balance = acc.movements.reduce((acc, mov) => acc + mov, 0);
+  acc.balance = balance;
+  labelBalance.textContent = `${acc.balance} EUR`;
 };
 
 
@@ -409,6 +410,23 @@ const calcDisplaySummary = function(acc){
 
 // calcDisplaySummary(account1.movements);
 
+btnTransfer.addEventListener('click', function(e){
+  e.preventDefault();
+  const amount = Number(inputTransferAmount.value);
+  const receiverAcc = accounts.find(acc => acc.username === inputTransferTo.value);
+  console.log(amount, receiverAcc);
+  inputTransferAmount.value = inputTransferTo.value = '';
+
+  if(amount > 0 && 
+     receiverAcc && 
+    currentAccount.balance >= amount && receiverAcc?.username !== currentAccount.username){
+      currentAccount.movements.push(-amount);
+      receiverAcc.movements.push(amount);
+      
+      updateUI(currentAccount);
+    }
+});
+
 const createUsernames = function(accs){
   accs.forEach(function(acc){
     acc.username = acc.owner
@@ -420,6 +438,17 @@ const createUsernames = function(accs){
 };
 
 createUsernames(accounts);
+
+const updateUI = function(){
+  // Display movements
+    displayMovements(acc.movements);
+
+    // Display balance
+    calcDisplayBalance(acc);
+
+    // Display summary
+    calcDisplaySummary(acc);
+};
 
 
 
@@ -445,14 +474,15 @@ btnLogin.addEventListener('click', function(e){
     inputLoginUsername.value = inputLoginPin.value = '';
     inputLoginPin.blur();
 
-    // Display movements
-    displayMovements(currentAccount.movements);
+    updateUI(currentAccount);
+    // // Display movements
+    // displayMovements(currentAccount.movements);
 
-    // Display balance
-    calcDisplayBalance(currentAccount.movements);
+    // // Display balance
+    // calcDisplayBalance(currentAccount.movements);
 
-    // Display summary
-    calcDisplaySummary(currentAccount);
+    // // Display summary
+    // calcDisplaySummary(currentAccount);
   }
 })
 
