@@ -1012,7 +1012,7 @@ console.log(totalDepositsUSD);
 // console.log(account);
 
 
-
+// 167. The findIndex Method
 btnClose.addEventListener('click', function(e){
   e.preventDefault();
 
@@ -1029,3 +1029,15 @@ btnClose.addEventListener('click', function(e){
 
   inputCloseUsername.value = inputClosePin.value = '';
 });
+
+
+
+// 168. The New findLast and findLastIndex Methods
+
+console.log(movements);
+const lastWithdrawal = movements.findLast(mov => mov < 0);
+console.log(lastWithdrawal);
+
+const latestLargeMovementIndex = movements.findLastIndex(mov => Math.abs(mov) > 1000);
+console.log(latestLargeMovementIndex);
+console.log(`Your latest large movement was ${movements.length - latestLargeMovementIndex - 1} movements ago`);
